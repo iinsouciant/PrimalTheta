@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrimalTheta_Editor.GameProjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,27 @@ namespace PrimalTheta_Editor
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += OnMainWindowLoaded;
+        }
+
+        private void OnMainWindowLoaded(object sender, RoutedEventArgs e)
+        {
+            Loaded -= OnMainWindowLoaded;
+            OpenProjectBrowserDialog();
+        }
+
+        private void OpenProjectBrowserDialog()
+        {
+            var projectBrowser = new ProjectBrowsingDialogue();
+            // need better understanding of how this works to keep it on top for when i want the editor window to be main
+            projectBrowser.Owner = this;
+            if(projectBrowser.ShowDialog() == false)
+            {
+                Application.Current.Shutdown();
+            } else
+            {
+
+            }
         }
     }
 }

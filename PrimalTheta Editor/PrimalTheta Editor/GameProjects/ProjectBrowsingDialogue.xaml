@@ -1,0 +1,75 @@
+﻿<Window x:Class="PrimalTheta_Editor.GameProjects.ProjectBrowsingDialogue"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PrimalTheta_Editor.GameProjects"
+        mc:Ignorable="d" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen"
+        Title="Project Browser" Width="900" Height="450" MinHeight="345" MinWidth="690">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type ToggleButton}" x:Key="TransparentToggleButtonStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid x:Name="RootGrid" Background="Transparent">
+                            <ContentPresenter x:Name="ContentPresenter"
+                                              Content="{TemplateBinding Content}" 
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Focusable="False"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#FFD2D3D6"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+            
+    </Window.Resources>
+    
+    <DockPanel LastChildFill="True" Background="#FF313338">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MinHeight="90"/>
+                <RowDefinition Height="30" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,5,0,0" Width="96" DockPanel.Dock="Left" Grid.Row="0">
+                <ToggleButton Style="{StaticResource TransparentToggleButtonStyle}" Content="Open Project" x:Name="openProjectButton" Margin="5,0,5,5" Click="openProjectButton_Click" />
+                <ToggleButton Style="{StaticResource TransparentToggleButtonStyle}" Content="Create Project" x:Name="createProjectButton" Click="createProjectButton_Click"/>
+                <ToggleButton Style="{StaticResource TransparentToggleButtonStyle}" Content="Resources" x:Name="resourcesButton" Click="resourcesButton_Click"/>
+            </StackPanel>
+            <ToggleButton Style="{StaticResource TransparentToggleButtonStyle}"
+                          Grid.Row="1" HorizontalAlignment="Left" Margin="10,0,5,0" BorderThickness="0" Background="Transparent" 
+                          Click="settingsButton_Click">
+                <Image x:Name="settingsPath" Height="18" Width="18">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Source" Value="{StaticResource G.CogOutline}"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="False">
+                                    <Setter Property="Source" Value="{StaticResource G.Cog}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </ToggleButton>
+        </Grid>
+
+        <Grid Margin="0,0,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border MinWidth="270" MinHeight="285"  VerticalAlignment="Stretch" CornerRadius="5,5,5,5" Margin="10,5,10,0" Background="#FF2E2E2E"/>
+        </Grid>
+    </DockPanel>
+</Window>
